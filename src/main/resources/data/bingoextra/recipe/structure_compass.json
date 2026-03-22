@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "WSW",
+    "SCS",
+    "WSW"
+  ],
+  "key": {
+    "W": "#bingoextra:monster_material",
+    "S": "#bingoextra:stones",
+    "C": "#minecraft:compasses"
+  },
+  "result": {
+    "id": "bingoextra:structure_compass"
+  }
+}

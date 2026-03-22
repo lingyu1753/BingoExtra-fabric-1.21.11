@@ -1,0 +1,91 @@
+package com.bingoextra.network;
+
+import com.bingoextra.config.BiomeCompassConfig;
+import com.bingoextra.core.component.ModDataComponents;
+import com.bingoextra.utils.BiomeItemUtils;
+import com.bingoextra.utils.BiomePlayerUtils;
+import com.bingoextra.BingoExtra;
+import com.bingoextra.item.BiomeCompassItem;
+import com.bingoextra.utils.BiomeCompassState;
+
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+public record BiomeTeleportPacket() implements CustomPacketPayload {
+	
+	public static final Type<BiomeTeleportPacket> TYPE = new Type<BiomeTeleportPacket>(Identifier.fromNamespaceAndPath(BingoExtra.MOD_ID, "biome_teleport"));
+
+	public static final StreamCodec<FriendlyByteBuf, BiomeTeleportPacket> CODEC = StreamCodec.ofMember(BiomeTeleportPacket::write, BiomeTeleportPacket::read);
+
+	public static BiomeTeleportPacket read(FriendlyByteBuf buf) {
+		return new BiomeTeleportPacket();
+	}
+	
+	public void write(FriendlyByteBuf buf) {
+	}
+
+	public static void apply(BiomeTeleportPacket packet, ServerPlayNetworking.Context context) {
+		context.server().execute(() -> {
+			final ItemStack stack = BiomeItemUtils.getHeldNatureCompass(context.player());
+			if (!stack.isEmpty()) {
+				final BiomeCompassItem natureCompass = (BiomeCompassItem) stack.getItem();
+				if (BiomeCompassConfig.allowTeleport && BiomePlayerUtils.canTeleport(context.player().level().getServer(), context.player())) {
+					if (natureCompass.getCompassState(stack) == BiomeCompassState.FOUND) {
+						final int x = stack.getOrDefault(ModDataComponents.FOUND_X, 0);
+						final int z = stack.getOrDefault(ModDataComponents.FOUND_Z, 0);
+						final int y = findValidTeleportHeight(context.player().level(), x, z);
+
+						context.player().stopRiding();
+						context.player().connection.teleport(x, y, z, context.player().getYRot(), context.player().getXRot());
+
+						if (!context.player().isFallFlying()) {
+							context.player().setDeltaMovement(context.player().getDeltaMovement().x(), 0, context.player().getDeltaMovement().z());
+							context.player().setOnGround(true);
+						}
+					}
+				} else {
+					BingoExtra.LOGGER.warn("Player " + context.player().getDisplayName().getString() + " tried to teleport but does not have permission.");
+				}
+			}
+		});
+	}
+	
+	@Override
+	public Type<BiomeTeleportPacket> type() {
+		return TYPE;
+	}
+
+	private static int findValidTeleportHeight(Level level, int x, int z) {
+		int upY = level.getSeaLevel();
+		int downY = level.getSeaLevel();
+		while ((!level.isOutsideBuildHeight(upY) || !level.isOutsideBuildHeight(downY)) && !(isValidTeleportPosition(level, new BlockPos(x, upY, z)) || isValidTeleportPosition(level, new BlockPos(x, downY, z)))) {
+			upY++;
+			downY--;
+		}
+		BlockPos upPos = new BlockPos(x, upY, z);
+		BlockPos downPos = new BlockPos(x, downY, z);
+		if (isValidTeleportPosition(level, upPos)) {
+			return upY;
+		}
+		if (isValidTeleportPosition(level, downPos)) {
+			return downY;
+		}
+		return 256;
+	}
+	
+	private static boolean isValidTeleportPosition(Level level, BlockPos pos) {
+		return isFree(level, pos) && isFree(level, pos.above()) && !isFree(level, pos.below());
+	}
+	
+	private static boolean isFree(Level level, BlockPos pos) {
+		return level.getBlockState(pos).isAir() || level.getBlockState(pos).is(BlockTags.FIRE) || level.getBlockState(pos).liquid() || level.getBlockState(pos).canBeReplaced();
+	}
+
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "bingoextra",
+  "version": "${version}",
+
+  "name": "Bingo Extra",
+  "description": "Bingo Extra Mod",
+  "authors": [
+    "Ling_Yu175"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "CC BY-NC-SA 4.0",
+  "icon": "assets/bingoextra/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.bingoextra.BingoExtra"
+    ],
+    "client": [
+      "com.bingoextra.BingoExtraClient"
+    ]
+  },
+  "mixins": [
+    "bingoextra.mixins.json"
+  ],
+  "accessWidener" : "bingoextra.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.18.2",
+    "fabric-api": "*",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}

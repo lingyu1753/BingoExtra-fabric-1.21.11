@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "bingoextra:copper_compass",
+    "bingoextra:biome_compass",
+    "bingoextra:structure_compass",
+    "minecraft:compass"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "minecraft:diamond",
+    "*": "minecraft:iron_block"
+  },
+  "pattern": [
+    "X*X",
+    " # ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:mining_pickaxe"
+  }
+}

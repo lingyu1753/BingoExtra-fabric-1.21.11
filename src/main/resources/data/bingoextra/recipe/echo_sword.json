@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " C ",
+    " C ",
+    " L "
+  ],
+  "key": {
+	"C": "minecraft:echo_shard",
+    "L": "minecraft:blaze_rod"
+  },
+  "result": {
+    "id": "bingoextra:echo_sword"
+  }
+}

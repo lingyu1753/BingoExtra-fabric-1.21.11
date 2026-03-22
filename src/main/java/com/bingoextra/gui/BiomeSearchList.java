@@ -1,0 +1,110 @@
+package com.bingoextra.gui;
+
+import com.bingoextra.utils.BiomeRenderUtils;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.ObjectSelectionList;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+
+public class BiomeSearchList extends ObjectSelectionList<BiomeSearchEntry> {
+
+	private final BiomeCompassScreen parentScreen;
+	private Player player;
+
+	public BiomeSearchList(BiomeCompassScreen parentScreen, Minecraft mc, Player player, Identifier biomeIdToSelect, int width, int height, int y, int itemHeight) {
+		super(mc, width, height, y, itemHeight);
+		this.parentScreen = parentScreen;
+		this.player = player;
+		refreshList(biomeIdToSelect);
+	}
+
+	@Override
+	protected int scrollBarX() {
+		return getRowLeft() + getRowWidth();
+	}
+
+	@Override
+	public int getRowWidth() {
+		return 270;
+	}
+
+	@Override
+    public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        enableScissor(guiGraphics);
+        renderListBackground(guiGraphics);
+        renderListItems(guiGraphics, mouseX, mouseY, partialTicks);
+        guiGraphics.disableScissor();
+        renderScrollbar(guiGraphics, mouseX, mouseY);
+    }
+
+	@Override
+	protected void renderListBackground(GuiGraphics guiGraphics) {
+		for (int i = 0; i < getItemCount(); ++i) {
+			if (getRowBottom(i) >= getY() && getRowTop(i) <= getBottom()) {
+				BiomeSearchEntry entry = children().get(i);
+				int fillColor = BiomeRenderUtils.getBackgroundColor(entry.isEnabled(), entry == getSelected());
+				guiGraphics.fill(getRowLeft(), getRowTop(i), getRowLeft() + getRowWidth(), getRowTop(i) + defaultEntryHeight, fillColor);
+			}
+		}
+	}
+
+	@Override
+	protected void renderSelection(GuiGraphics guiGraphics, BiomeSearchEntry entry, int backgroundColor) {
+		// Selection is rendered in renderListBackground()
+	}
+
+	@Override
+	protected void renderScrollbar(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+		if (scrollbarVisible()) {
+			int left = scrollBarX();
+			int right = left + 6;
+			int height = (int) ((float) ((getBottom() - getY()) * (getBottom() - getY())) / (float) contentHeight());
+			height = Mth.clamp(height, 32, getBottom() - getY() - 8);
+			int top = (int) scrollAmount() * (getBottom() - getY() - height) / maxScrollAmount() + getY();
+			if (top < getY()) {
+				top = getY();
+			}
+
+			int backgroundFillColor = BiomeRenderUtils.getBackgroundColor(false, false);
+			int scrollbarFillColor = BiomeRenderUtils.getBackgroundColor(true, true);
+			guiGraphics.fill(left, getY(), right, getBottom(), backgroundFillColor);
+			guiGraphics.fill(left, top, right, top + height, scrollbarFillColor);
+		}
+	}
+
+	@Override
+	public void setSelected(BiomeSearchEntry entry) {
+		if (entry == null || entry.isEnabled()) {
+			super.setSelected(entry);
+		}
+	}
+
+	public void refreshList(Identifier biomeIdToSelect) {
+		clearEntries();
+		for (Identifier biomeId : parentScreen.sortBiomes()) {
+			BiomeSearchEntry entry = new BiomeSearchEntry(this, biomeId, player);
+			addEntry(entry);
+			if (biomeId.equals(biomeIdToSelect)) {
+				setSelected(entry);
+			}
+		}
+		setScrollAmount(0);
+	}
+
+	public void refreshList(boolean maintainSelection) {
+		Identifier select = maintainSelection && hasSelection() ? getSelected().getBiomeId() : null;
+		refreshList(select);
+	}
+
+	public boolean hasSelection() {
+		return getSelected() != null;
+	}
+
+	public BiomeCompassScreen getParentScreen() {
+		return parentScreen;
+	}
+
+}

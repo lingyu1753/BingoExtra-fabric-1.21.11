@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "#bingoextra:iron_material",
+    "*": "minecraft:flint"
+  },
+  "pattern": [
+    "XX*",
+    "X# ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:breaking_axe"
+  }
+}

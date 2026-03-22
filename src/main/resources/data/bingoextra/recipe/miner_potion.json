@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "minecraft:diamond",
+    "B": "minecraft:dandelion",
+    "C": "minecraft:poppy",
+    "D": "minecraft:glass_bottle",
+    "E": "minecraft:copper_block"
+  },
+  "pattern": [
+    "ABA",
+    "CDC",
+    "EBE"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:miner_potion",
+    "components": {
+      "minecraft:potion_contents": {
+        "custom_name": "miner",
+        "custom_color": 123456,
+        "custom_effects": [
+          {
+            "id": "minecraft:haste",
+            "amplifier": 1,
+            "duration": 6000
+          }
+        ]
+      }
+    }
+  }
+}

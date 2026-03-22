@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": "minecraft:stick",
+    "X": "#bingoextra:iron_material",
+    "*": "#minecraft:coals"
+  },
+  "pattern": [
+    "XXX",
+    "*#*",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:smelting_pickaxe",
+    "components": {
+      "minecraft:enchantments": {
+        "minecraft:efficiency": 1
+      }
+    }
+  }
+}

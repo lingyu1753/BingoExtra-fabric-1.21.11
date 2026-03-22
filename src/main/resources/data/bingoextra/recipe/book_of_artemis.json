@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:paper",
+    "X": "minecraft:arrow"
+  },
+  "pattern": [
+    "##",
+    "#X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:book_of_artemis",
+    "components": {
+        "minecraft:stored_enchantments": {
+            "minecraft:projectile_protection": 1
+        }
+    }
+  }
+}

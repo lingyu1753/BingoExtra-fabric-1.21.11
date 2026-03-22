@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:paper",
+    "X": "minecraft:iron_pickaxe"
+  },
+  "pattern": [
+    "##",
+    "#X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:book_of_efficiency",
+    "components": {
+        "minecraft:stored_enchantments": {
+            "minecraft:efficiency": 1
+        }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": "minecraft:redstone_block",
+    "B": "minecraft:ender_pearl",
+    "C": "minecraft:lapis_block",
+    "D": "minecraft:water_bucket"
+  },
+  "pattern": [
+    "AAA",
+    " B ",
+    "CDC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:world_pearl",
+    "components": {
+        "minecraft:item_name": [{"translate":"item.bingoextra.world_pearl", "color":"light_purple"}]
+    }
+  }
+}

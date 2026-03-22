@@ -1,0 +1,41 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "bingoextra:item/biome_compass_16"
+    },
+    "overrides": [
+        { "predicate": { "bingoextra:biome_angle": 0.000000 }, "model": "bingoextra:item/biome_compass" },
+        { "predicate": { "bingoextra:biome_angle": 0.015625 }, "model": "bingoextra:item/biome_compass_17" },
+        { "predicate": { "bingoextra:biome_angle": 0.046875 }, "model": "bingoextra:item/biome_compass_18" },
+        { "predicate": { "bingoextra:biome_angle": 0.078125 }, "model": "bingoextra:item/biome_compass_19" },
+        { "predicate": { "bingoextra:biome_angle": 0.109375 }, "model": "bingoextra:item/biome_compass_20" },
+        { "predicate": { "bingoextra:biome_angle": 0.140625 }, "model": "bingoextra:item/biome_compass_21" },
+        { "predicate": { "bingoextra:biome_angle": 0.171875 }, "model": "bingoextra:item/biome_compass_22" },
+        { "predicate": { "bingoextra:biome_angle": 0.203125 }, "model": "bingoextra:item/biome_compass_23" },
+        { "predicate": { "bingoextra:biome_angle": 0.234375 }, "model": "bingoextra:item/biome_compass_24" },
+        { "predicate": { "bingoextra:biome_angle": 0.265625 }, "model": "bingoextra:item/biome_compass_25" },
+        { "predicate": { "bingoextra:biome_angle": 0.296875 }, "model": "bingoextra:item/biome_compass_26" },
+        { "predicate": { "bingoextra:biome_angle": 0.328125 }, "model": "bingoextra:item/biome_compass_27" },
+        { "predicate": { "bingoextra:biome_angle": 0.359375 }, "model": "bingoextra:item/biome_compass_28" },
+        { "predicate": { "bingoextra:biome_angle": 0.390625 }, "model": "bingoextra:item/biome_compass_29" },
+        { "predicate": { "bingoextra:biome_angle": 0.421875 }, "model": "bingoextra:item/biome_compass_30" },
+        { "predicate": { "bingoextra:biome_angle": 0.453125 }, "model": "bingoextra:item/biome_compass_31" },
+        { "predicate": { "bingoextra:biome_angle": 0.484375 }, "model": "bingoextra:item/biome_compass_00" },
+        { "predicate": { "bingoextra:biome_angle": 0.515625 }, "model": "bingoextra:item/biome_compass_01" },
+        { "predicate": { "bingoextra:biome_angle": 0.546875 }, "model": "bingoextra:item/biome_compass_02" },
+        { "predicate": { "bingoextra:biome_angle": 0.578125 }, "model": "bingoextra:item/biome_compass_03" },
+        { "predicate": { "bingoextra:biome_angle": 0.609375 }, "model": "bingoextra:item/biome_compass_04" },
+        { "predicate": { "bingoextra:biome_angle": 0.640625 }, "model": "bingoextra:item/biome_compass_05" },
+        { "predicate": { "bingoextra:biome_angle": 0.671875 }, "model": "bingoextra:item/biome_compass_06" },
+        { "predicate": { "bingoextra:biome_angle": 0.703125 }, "model": "bingoextra:item/biome_compass_07" },
+        { "predicate": { "bingoextra:biome_angle": 0.734375 }, "model": "bingoextra:item/biome_compass_08" },
+        { "predicate": { "bingoextra:biome_angle": 0.765625 }, "model": "bingoextra:item/biome_compass_09" },
+        { "predicate": { "bingoextra:biome_angle": 0.796875 }, "model": "bingoextra:item/biome_compass_10" },
+        { "predicate": { "bingoextra:biome_angle": 0.828125 }, "model": "bingoextra:item/biome_compass_11" },
+        { "predicate": { "bingoextra:biome_angle": 0.859375 }, "model": "bingoextra:item/biome_compass_12" },
+        { "predicate": { "bingoextra:biome_angle": 0.890625 }, "model": "bingoextra:item/biome_compass_13" },
+        { "predicate": { "bingoextra:biome_angle": 0.921875 }, "model": "bingoextra:item/biome_compass_14" },
+        { "predicate": { "bingoextra:biome_angle": 0.953125 }, "model": "bingoextra:item/biome_compass_15" },
+        { "predicate": { "bingoextra:biome_angle": 0.984375 }, "model": "bingoextra:item/biome_compass" }
+    ]
+}

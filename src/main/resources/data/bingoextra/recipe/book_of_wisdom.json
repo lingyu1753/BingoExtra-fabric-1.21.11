@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:paper",
+    "X": "minecraft:fire_charge",
+    "*": "minecraft:ender_eye"
+  },
+  "pattern": [
+    "*  ",
+    " ##",
+    " #X"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bingoextra:book_of_wisdom",
+    "components": {
+        "minecraft:stored_enchantments": {
+            "minecraft:protection": 4,
+            "minecraft:quick_charge": 2,
+            "minecraft:piercing": 3,
+            "minecraft:punch": 1,
+            "minecraft:sharpness": 3,
+            "minecraft:frost_walker": 2,
+            "minecraft:multishot": 1,
+            "minecraft:power": 2,
+            "minecraft:fire_aspect": 1,
+            "minecraft:luck_of_the_sea": 3,
+            "minecraft:lure": 3
+        }
+    }
+  }
+}
