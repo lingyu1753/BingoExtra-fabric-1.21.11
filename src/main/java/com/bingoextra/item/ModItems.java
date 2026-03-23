@@ -134,6 +134,25 @@ public class ModItems {
                     .component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
                     .usingConvertsTo(GLASS_BOTTLE)
                                                   );
+    public static final Item THUNDER_ORDER = registerItem("thunder_order", WeatherOrderItem::new, new Item.Properties()
+                                                                  .component(ModDataComponents.WEATHER_TYPE, WeatherOrderItem.THUNDER)
+                                                                  .component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("lore.bingoextra.thunder_order")) ))
+                                                         );
+    public static final Item RAIN_ORDER = registerItem("rain_order", WeatherOrderItem::new, new Item.Properties()
+                                                                  .component(ModDataComponents.WEATHER_TYPE, WeatherOrderItem.RAIN)
+                                                                  .component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("lore.bingoextra.rain_order")) ))
+                                                         );
+    public static final Item SUN_ORDER = registerItem("sun_order", WeatherOrderItem::new, new Item.Properties()
+                                                                  .component(ModDataComponents.WEATHER_TYPE, WeatherOrderItem.CLEAR)
+                                                                  .component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("lore.bingoextra.sun_order")) ))
+                                                         );
+    public static final Item OXIDANT = registerItem("oxidant", OxidantItem::new, new Item.Properties()
+                                                                  .component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("lore.bingoextra.oxidant")) ))
+                                                         );
+    public static final Item SOUL_VAULT = registerItem("soul_vault", SoulVaultItem::new, new Item.Properties()
+                                                                  .component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("lore.bingoextra.soul_vault")) ))
+                                                         );
+
 
 
     private static Function<Item.Properties, Item> createBlockItemWithCustomItemName(Block block) {

@@ -17,11 +17,7 @@ import static com.mojang.text2speech.Narrator.LOGGER;
 public class HeadHunterHandler {
 
     private static final Map<EntityType<?>, ItemStack> HEAD_DROPS = Map.ofEntries(
-            Map.entry(EntityType.SKELETON, new ItemStack(Items.SKELETON_SKULL)),
-            Map.entry(EntityType.WITHER_SKELETON, new ItemStack(Items.WITHER_SKELETON_SKULL)),
-            Map.entry(EntityType.ZOMBIE, new ItemStack(Items.ZOMBIE_HEAD)),
-            Map.entry(EntityType.CREEPER, new ItemStack(Items.CREEPER_HEAD)),
-            Map.entry(EntityType.PIGLIN, new ItemStack(Items.PIGLIN_HEAD))
+            Map.entry(EntityType.WITHER_SKELETON, new ItemStack(Items.WITHER_SKELETON_SKULL))
                                                                                  );
 
     public static void init() {

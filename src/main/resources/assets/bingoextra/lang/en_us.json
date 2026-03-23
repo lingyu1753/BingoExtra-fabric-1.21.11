@@ -110,6 +110,11 @@
   "item.bingoextra.miner_potion.effect.miner": "Miner Potion",
   "item.bingoextra.barbecue": "Barbecue",
   "item.bingoextra.echo_sword": "Echo Sword",
+  "item.bingoextra.thunder_order": "Thunder Order",
+  "item.bingoextra.rain_order": "Rain Order",
+  "item.bingoextra.sun_order": "Sun Order",
+  "item.bingoextra.oxidant": "Oxidant",
+  "item.bingoextra.soul_vault": "Soul Vault",
 
   "item.bingoextra.book_of_artemis": "Book of Artemis",
   "item.bingoextra.book_of_power": "Book of Power",
@@ -121,6 +126,8 @@
   "info.bingoextra.world_pearl.failed": "§cThere is not enough space above",
   "info.bingoextra.world_pearl.too_high": "§cMust be used at positions below Y=10",
   "info.bingoextra.layers": "§fLayers",
+  "info.bingoextra.weather_order.invalid": "§cInvalid weather type",
+  "info.bingoextra.weather_order.success": "§aWeather changed successfully",
 
   "lore.bingoextra.smelting_pickaxe": "§7Automatically smelts ores and stores them in your inventory while mining",
   "lore.bingoextra.breaking_axe": "§7Chains the harvesting of trees",
@@ -135,6 +142,11 @@
   "lore.bingoextra.structure_compass": "§7Used to query structure location",
   "lore.bingoextra.team_selector": "§7Used to select a team",
   "lore.bingoextra.echo_sword": "§7There is a chance to obtain a monster head",
+  "lore.bingoextra.thunder_order": "§7Changes the weather to thunder",
+  "lore.bingoextra.rain_order": "§7Changes the weather to rain",
+  "lore.bingoextra.sun_order": "§7Changes the weather to clear",
+  "lore.bingoextra.oxidant": "§7Use on some oxidizable blocks",
+  "lore.bingoextra.soul_vault": "§7Used to store the soul of a mob",
 
   "translate.bingoextra.recipe": "You have Crafted",
 

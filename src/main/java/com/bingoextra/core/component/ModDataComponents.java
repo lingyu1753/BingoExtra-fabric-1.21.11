@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.Identifier;
 
@@ -34,28 +35,38 @@ public class ModDataComponents {
     public static final DataComponentType<List<String>> EXPLORED_BIOMES = DataComponentType.<List<String>>builder().persistent(Codec.STRING.listOf()).networkSynchronized(ByteBufCodecs.collection(ArrayList::new, ByteBufCodecs.STRING_UTF8)).build();
     public static final DataComponentType<String> TEAM = DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build();
     public static final DataComponentType<Boolean> HEAD_HUNTER = DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build();
+    public static final DataComponentType<String> WEATHER_TYPE = DataComponentType.<String>builder().persistent(Codec.STRING).networkSynchronized(ByteBufCodecs.STRING_UTF8).build();
+    public static final DataComponentType<CompoundTag> STORED_ENTITY = DataComponentType.<CompoundTag>builder()
+                                                                                        .persistent(CompoundTag.CODEC)
+                                                                                        .networkSynchronized(ByteBufCodecs.COMPOUND_TAG)  // 修改这里
+                                                                                        .build();
+
+    public static <T> void register(DataComponentType<T> type, String name) {
+        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, name), type);
+    }
 
     public static void init() {
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "compass_state"), COMPASS_STATE);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "found_x"), FOUND_X);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "found_z"), FOUND_Z);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "search_radius"), SEARCH_RADIUS);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "samples"), SAMPLES);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "display_coords"), DISPLAY_COORDS);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "show_pos"), SHOW_POS);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "prev_pos"), PREV_POS);
+        register(COMPASS_STATE, "compass_state");
+        register(FOUND_X, "found_x");
+        register(FOUND_Z, "found_z");
+        register(SEARCH_RADIUS, "search_radius");
+        register(SAMPLES, "samples");
+        register(DISPLAY_COORDS, "display_coords");
+        register(SHOW_POS, "show_pos");
+        register(PREV_POS, "prev_pos");
 
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "biome_id"), BIOME_ID);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "structure_id"), STRUCTURE_ID);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "is_group"), IS_GROUP);
+        register(BIOME_ID, "biome_id");
+        register(STRUCTURE_ID, "structure_id");
+        register(IS_GROUP, "is_group");
 
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "auto_smelting"), AUTO_SMELTING);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "chaining_log_breakable"), CHAINING_LOG_BREAKABLE);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "mining_developed"), MINING_DEVELOPED);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "explored_biomes"), EXPLORED_BIOMES);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "team"), TEAM);
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MOD_ID, "head_hunter"), HEAD_HUNTER);
-
+        register(AUTO_SMELTING, "auto_smelting");
+        register(CHAINING_LOG_BREAKABLE, "chaining_log_breakable");
+        register(MINING_DEVELOPED, "mining_developed");
+        register(EXPLORED_BIOMES, "explored_biomes");
+        register(TEAM, "team");
+        register(HEAD_HUNTER, "head_hunter");
+        register(WEATHER_TYPE, "weather_type");
+        register(STORED_ENTITY, "stored_entity");
 
         LOGGER.info("core.component.ModDataComponents init");
     }

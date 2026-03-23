@@ -81,6 +81,11 @@ public class ModCreativeModeTabs {
                                                    Optional.empty()
                                            ));
                                            output.accept(minerPotion);
+                                           output.accept(ModItems.THUNDER_ORDER);
+                                           output.accept(ModItems.RAIN_ORDER);
+                                           output.accept(ModItems.SUN_ORDER);
+                                           output.accept(ModItems.OXIDANT);
+                                           output.accept(ModItems.SOUL_VAULT);
                                        })
                                .build());
     }

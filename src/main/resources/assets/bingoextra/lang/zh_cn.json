@@ -111,6 +111,11 @@
   "item.bingoextra.miner_potion.effect.empty": "矿工药水",
   "item.bingoextra.barbecue": "烤肉",
   "item.bingoextra.echo_sword": "水调割头",
+  "item.bingoextra.thunder_order": "雷雨令",
+  "item.bingoextra.rain_order": "暴雨令",
+  "item.bingoextra.sun_order": "晴天令",
+  "item.bingoextra.oxidant": "氧化剂",
+  "item.bingoextra.soul_vault": "捕魂瓶",
 
   "item.bingoextra.book_of_artemis": "阿尔忒弥斯之书",
   "item.bingoextra.book_of_power": "力量之书",
@@ -122,6 +127,8 @@
   "info.bingoextra.world_pearl.failed": "§c上方没有足够的空间",
   "info.bingoextra.world_pearl.too_high": "§c必须在Y=10以下使用",
   "info.bingoextra.layers": "§f层数",
+  "info.bingoextra.weather_order.invalid": "§c无效的天气类型",
+  "info.bingoextra.weather_order.success": "§a天气已成功改变",
   
   "lore.bingoextra.smelting_pickaxe": "§7挖掘时自动熔炼矿石, 并收入背包",
   "lore.bingoextra.breaking_axe": "§7连锁采集树木",
@@ -136,6 +143,11 @@
   "lore.bingoextra.structure_compass": "§7用于查询结构位置",
   "lore.bingoextra.team_selector": "§7右键选择队伍",
   "lore.bingoextra.echo_sword": "§7有几率获得一个怪物头颅",
+  "lore.bingoextra.thunder_order": "§7改变天气为雷雨天",
+  "lore.bingoextra.rain_order": "§7改变天气为暴雨天",
+  "lore.bingoextra.sun_order": "§7改变天气为晴天",
+  "lore.bingoextra.oxidant": "§7用于氧化一些块",
+  "lore.bingoextra.soul_vault": "§7用于存储怪物的灵魂",
 
   "translate.bingoextra.recipe": "你已制作",
 

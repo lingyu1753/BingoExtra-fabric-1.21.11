@@ -15,10 +15,11 @@ import java.util.function.ToIntFunction;
 import static com.bingoextra.BingoExtra.LOGGER;
 
 public class ModGameRules {
-    public static final GameRule<Integer> MAX_EXPLORER_LAYERS = registerInteger("max_explorer_layers", GameRuleCategory.PLAYER, 15, 0, 255);
-    public static final GameRule<Integer> MINING_DEVELOPED = registerInteger("mining_developed", GameRuleCategory.PLAYER, 30, 0, 32767);
-    public static final GameRule<Integer> MINING_LEVEL = registerInteger("mining_level", GameRuleCategory.PLAYER, 8, 0, 255);
-    public static final GameRule<Integer> HEAD_HUNTER_PROBABILITY = registerInteger("head_hunter_probability", GameRuleCategory.PLAYER, 85, 0, 1000);
+    public static final GameRule<Integer> MAX_EXPLORER_LAYERS = registerInteger("bingoextra:max_explorer_layers", GameRuleCategory.PLAYER, 15, 0, 255);
+    public static final GameRule<Integer> MINING_DEVELOPED = registerInteger("bingoextra:mining_developed", GameRuleCategory.PLAYER, 30, 0, 32767);
+    public static final GameRule<Integer> MINING_LEVEL = registerInteger("bingoextra:mining_level", GameRuleCategory.PLAYER, 8, 0, 255);
+    public static final GameRule<Integer> HEAD_HUNTER_PROBABILITY = registerInteger("bingoextra:head_hunter_probability", GameRuleCategory.PLAYER, 200, 0, 1000);
+    public static final GameRule<Integer> SPAWN_PHANTOM_DELAY = registerInteger("bingoextra:spawn_phantom_delay", GameRuleCategory.PLAYER, 24000, 0, Integer.MAX_VALUE);
 
     private static GameRule<Boolean> registerBoolean(String string, GameRuleCategory gameRuleCategory, boolean bl) {
         return register(
