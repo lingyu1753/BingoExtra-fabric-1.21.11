@@ -19,6 +19,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.TagValueOutput;
+import org.jetbrains.annotations.NotNull;
 
 import static com.bingoextra.BingoExtra.LOGGER;
 
@@ -39,7 +40,7 @@ public class SoulVaultItem extends Item {
             return InteractionResult.FAIL;
         }
         EntityType<?> type = target.getType();
-        if (type == EntityType.WITHER || type == EntityType.ENDER_DRAGON) {
+        if (type == EntityType.WITHER || type == EntityType.ENDER_DRAGON || type == EntityType.PLAYER) {
             return InteractionResult.FAIL;
         }
         ProblemReporter problemReporter = ProblemReporter.DISCARDING;
