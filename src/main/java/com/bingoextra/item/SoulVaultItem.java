@@ -3,7 +3,9 @@ package com.bingoextra.item;
 import com.bingoextra.core.component.ModDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ProblemReporter;
@@ -40,7 +42,7 @@ public class SoulVaultItem extends Item {
             return InteractionResult.FAIL;
         }
         EntityType<?> type = target.getType();
-        if (type == EntityType.WITHER || type == EntityType.ENDER_DRAGON || type == EntityType.PLAYER) {
+        if (type == EntityType.WITHER || type == EntityType.ENDER_DRAGON || type == EntityType.PLAYER || type == EntityType.VILLAGER) {
             return InteractionResult.FAIL;
         }
         ProblemReporter problemReporter = ProblemReporter.DISCARDING;
@@ -49,8 +51,14 @@ public class SoulVaultItem extends Item {
 
         CompoundTag entityTag = output.buildResult();
         stack.set(ModDataComponents.STORED_ENTITY, entityTag);
-        player.setItemInHand(hand, stack);
 
+        String id = String.valueOf(entityTag.getString("id"));
+        String[] data = id.substring(9, id.length() - 1).split(":");
+        String namespace = data[0];
+        String name = data[1];
+        stack.set(DataComponents.ITEM_NAME, Component.translatable("entity." + namespace + "." + name).append(" ").append(Component.translatable("item.bingoextra.soul_vault")));
+
+        player.setItemInHand(hand, stack);
         target.discard();
         level.playSound(null, target.blockPosition(), SoundEvents.BEEHIVE_ENTER, SoundSource.PLAYERS, 1.0F, 1.0F);
         return InteractionResult.SUCCESS;
@@ -76,6 +84,7 @@ public class SoulVaultItem extends Item {
         EntityType<?> type = EntityType.byString(id).orElse(null);
         if (type == null) {
             stack.remove(ModDataComponents.STORED_ENTITY);
+            stack.set(DataComponents.ITEM_NAME, Component.translatable("item.bingoextra.soul_vault"));
             return InteractionResult.FAIL;
         }
 
@@ -96,6 +105,7 @@ public class SoulVaultItem extends Item {
 
         level.addFreshEntity(entity);
         stack.remove(ModDataComponents.STORED_ENTITY);
+        stack.set(DataComponents.ITEM_NAME, Component.translatable("item.bingoextra.soul_vault"));
         level.playSound(null, pos, SoundEvents.BEEHIVE_EXIT, SoundSource.PLAYERS, 1.0F, 1.0F);
         return InteractionResult.SUCCESS;
     }

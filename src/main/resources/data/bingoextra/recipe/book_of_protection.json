@@ -13,7 +13,7 @@
     "count": 1,
     "id": "bingoextra:book_of_protection",
     "components": {
-        "minecraft:stored_enchantments": {
+        "minecraft:enchantments": {
             "minecraft:protection": 1
         }
     }

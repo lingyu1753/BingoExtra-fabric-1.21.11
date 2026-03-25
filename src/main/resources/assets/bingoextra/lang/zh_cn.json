@@ -98,7 +98,7 @@
   "structure.minecraft.village_savanna": "热带草原村庄",
   "structure.minecraft.village_snowy": "雪原村庄",
   "structure.minecraft.village_taiga": "针叶林村庄",
-  
+
   "item.bingoextra.smelting_pickaxe": "熔炼镐",
   "item.bingoextra.breaking_axe": "破坏斧",
   "item.bingoextra.mining_pickaxe": "矿工镐",
@@ -106,7 +106,6 @@
   "item.bingoextra.world_pearl": "世界珍珠",
   "item.bingoextra.sneakers": "旅行鞋",
   "item.bingoextra.copper_compass": "黄铜指南针",
-  "item.bingoextra.team_selector": "请选择一个队伍",
   "item.bingoextra.miner_potion.effect.miner": "矿工药水",
   "item.bingoextra.miner_potion.effect.empty": "矿工药水",
   "item.bingoextra.barbecue": "烤肉",
@@ -129,7 +128,7 @@
   "info.bingoextra.layers": "§f层数",
   "info.bingoextra.weather_order.invalid": "§c无效的天气类型",
   "info.bingoextra.weather_order.success": "§a天气已成功改变",
-  
+
   "lore.bingoextra.smelting_pickaxe": "§7挖掘时自动熔炼矿石, 并收入背包",
   "lore.bingoextra.breaking_axe": "§7连锁采集树木",
   "lore.bingoextra.mining_pickaxe.1": "§7每挖掘一些矿物增加",
@@ -141,17 +140,12 @@
   "lore.bingoextra.copper_compass": "§7另一种指南针",
   "lore.bingoextra.biome_compass": "§7用于查询群系位置",
   "lore.bingoextra.structure_compass": "§7用于查询结构位置",
-  "lore.bingoextra.team_selector": "§7右键选择队伍",
   "lore.bingoextra.echo_sword": "§7有几率获得一个怪物头颅",
   "lore.bingoextra.thunder_order": "§7改变天气为雷雨天",
   "lore.bingoextra.rain_order": "§7改变天气为暴雨天",
   "lore.bingoextra.sun_order": "§7改变天气为晴天",
-  "lore.bingoextra.oxidant": "§7用于氧化一些块",
+  "lore.bingoextra.oxidant": "§7用于氧化一些可氧化方块",
   "lore.bingoextra.soul_vault": "§7用于存储怪物的灵魂",
 
-  "translate.bingoextra.recipe": "你已制作",
-
-  "container.bingoextra.team_select": "选择一个队伍",
-
-  "bingo.team.spectators": "旁观"
+  "translate.bingoextra.recipe": "你已制作"
 }

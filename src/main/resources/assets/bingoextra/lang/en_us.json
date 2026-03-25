@@ -5,6 +5,7 @@
   "string.bingoextra.back": "Back",
   "string.bingoextra.info": "Info",
   "string.bingoextra.startSearch": "Start Search",
+  "string.bingoextra.searchForNext": "Search for Next",
   "string.bingoextra.selectBiome": "Select Biome",
   "string.bingoextra.sortBy": "Sort By",
   "string.bingoextra.teleport": "Teleport",
@@ -105,7 +106,6 @@
   "item.bingoextra.world_pearl": "World Pearl",
   "item.bingoextra.sneakers": "Sneakers",
   "item.bingoextra.copper_compass": "Copper Compass",
-  "item.bingoextra.team_selector": "Select a team",
   "item.bingoextra.miner_potion.effect.empty": "Miner Potion",
   "item.bingoextra.miner_potion.effect.miner": "Miner Potion",
   "item.bingoextra.barbecue": "Barbecue",
@@ -140,7 +140,6 @@
   "lore.bingoextra.copper_compass": "§7A different compass",
   "lore.bingoextra.biome_compass": "§7Used to query biome location",
   "lore.bingoextra.structure_compass": "§7Used to query structure location",
-  "lore.bingoextra.team_selector": "§7Used to select a team",
   "lore.bingoextra.echo_sword": "§7There is a chance to obtain a monster head",
   "lore.bingoextra.thunder_order": "§7Changes the weather to thunder",
   "lore.bingoextra.rain_order": "§7Changes the weather to rain",
@@ -148,9 +147,5 @@
   "lore.bingoextra.oxidant": "§7Use on some oxidizable blocks",
   "lore.bingoextra.soul_vault": "§7Used to store the soul of a mob",
 
-  "translate.bingoextra.recipe": "You have Crafted",
-
-  "container.bingoextra.team_select": "Select a team",
-
-  "bingo.team.spectators": "Spectators"
+  "translate.bingoextra.recipe": "You have Crafted"
 }

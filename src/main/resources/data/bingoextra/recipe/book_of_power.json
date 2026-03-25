@@ -15,7 +15,7 @@
     "count": 1,
     "id": "bingoextra:book_of_power",
     "components": {
-        "minecraft:stored_enchantments": {
+        "minecraft:enchantments": {
             "minecraft:power": 1
         }
     }

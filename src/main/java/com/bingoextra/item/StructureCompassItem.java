@@ -42,7 +42,7 @@ public class StructureCompassItem extends Item {
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        if (player.isCrouching()) {
+        if (player.isShiftKeyDown()) {
             final ItemStack stack = StructureCompassItemUtils.getHeldItem(player, ModItems.STRUCTURE_COMPASS);
             if (Boolean.FALSE.equals(stack.get(ModDataComponents.SHOW_POS))) {
                 stack.set(ModDataComponents.SHOW_POS, true);
@@ -50,6 +50,7 @@ public class StructureCompassItem extends Item {
             } else {
                 stack.set(ModDataComponents.SHOW_POS, false);
                 player.playSound(SoundEvents.LODESTONE_COMPASS_LOCK, 1.0F, 0.5F);
+                player.displayClientMessage(Component.literal(""), true);
             }
         } else {
             if (level.isClientSide()) {

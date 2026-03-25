@@ -15,7 +15,7 @@
     "count": 1,
     "id": "bingoextra:book_of_sharpness",
     "components": {
-        "minecraft:stored_enchantments": {
+        "minecraft:enchantments": {
             "minecraft:sharpness": 1
         }
     }

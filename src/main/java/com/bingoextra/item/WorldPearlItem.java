@@ -19,7 +19,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.LevelData;
 
@@ -70,25 +69,20 @@ public class WorldPearlItem extends Item {
             return false;
         }
 
-        int seaLevel = level.getSeaLevel();
-
         for (int attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
             int dx = level.getRandom().nextInt(2 * RADIUS + 1) - RADIUS;
             int dz = level.getRandom().nextInt(2 * RADIUS + 1) - RADIUS;
             int targetX = Mth.floor(player.getX()) + dx;
             int targetZ = Mth.floor(player.getZ()) + dz;
-            int maxY = level.getHeight(Heightmap.Types.WORLD_SURFACE, targetX, targetZ) - 1;
 
-            BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(targetX, seaLevel, targetZ);
-            for (int y = seaLevel; y <= maxY; y++) {
-                pos.setY(y);
-                BlockState state = level.getBlockState(pos);
-                BlockState stateAbove = level.getBlockState(pos.above());
-                if (state.isAir() && stateAbove.isAir()) {
-                    boolean success = player.teleportTo(level, targetX + 0.5, y, targetZ + 0.5, Set.of(), player.getYRot(), player.getXRot(), true);
-                    if (success) {
-                        return true;
-                    }
+            int surfaceY = level.getHeight(Heightmap.Types.WORLD_SURFACE, targetX, targetZ);
+            int targetY = surfaceY + 1; // 地表上方一格，保证露天
+
+            BlockPos targetPos = new BlockPos(targetX, targetY, targetZ);
+            if (level.getBlockState(targetPos).isAir()) {
+                boolean success = player.teleportTo(level, targetX + 0.5, targetY, targetZ + 0.5, Set.of(), player.getYRot(), player.getXRot(), true);
+                if (success) {
+                    return true;
                 }
             }
         }
