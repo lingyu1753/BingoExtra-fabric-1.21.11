@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.bingoextra.BingoExtra.MOD_ID;
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static com.bingoextra.BingoExtra.LOGGER;
 
 public class ModDataComponents {
     public static final DataComponentType<Integer> COMPASS_STATE = DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.VAR_INT).build();

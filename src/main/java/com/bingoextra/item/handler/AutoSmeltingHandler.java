@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static com.bingoextra.BingoExtra.LOGGER;
 
 
 public class AutoSmeltingHandler {

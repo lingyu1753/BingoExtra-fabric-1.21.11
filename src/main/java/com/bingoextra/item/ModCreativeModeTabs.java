@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.bingoextra.BingoExtra.MOD_ID;
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static com.bingoextra.BingoExtra.LOGGER;
 import static net.minecraft.core.registries.BuiltInRegistries.CREATIVE_MODE_TAB;
 
 public class ModCreativeModeTabs {
@@ -86,6 +86,7 @@ public class ModCreativeModeTabs {
                                            output.accept(ModItems.SUN_ORDER);
                                            output.accept(ModItems.OXIDANT);
                                            output.accept(ModItems.SOUL_VAULT);
+                                           output.accept(ModItems.BOUNTY_ORDER);
                                        })
                                .build());
     }
@@ -104,6 +105,6 @@ public class ModCreativeModeTabs {
     public static void init() {
         addToVanillaCreativeTabs();// 1 添加至原版创造模式物品栏
         registerCreativeModeTabs();// 2 注册创造模式物品栏
-        LOGGER.info("item/ModCreativeModeTabs init");
+        LOGGER.info("item.ModCreativeModeTabs init");
     }
 }

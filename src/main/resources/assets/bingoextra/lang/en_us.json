@@ -115,6 +115,7 @@
   "item.bingoextra.sun_order": "Sun Order",
   "item.bingoextra.oxidant": "Oxidant",
   "item.bingoextra.soul_vault": "Soul Vault",
+  "item.bingoextra.bounty_order": "Bounty Order",
 
   "item.bingoextra.book_of_artemis": "Book of Artemis",
   "item.bingoextra.book_of_power": "Book of Power",
@@ -146,6 +147,7 @@
   "lore.bingoextra.sun_order": "§7Changes the weather to clear",
   "lore.bingoextra.oxidant": "§7Use on some oxidizable blocks",
   "lore.bingoextra.soul_vault": "§7Used to store the soul of a mob",
+  "lore.bingoextra.bounty_order": "§7Used to display the location of nearby ominous creatures",
 
   "translate.bingoextra.recipe": "You have Crafted"
 }

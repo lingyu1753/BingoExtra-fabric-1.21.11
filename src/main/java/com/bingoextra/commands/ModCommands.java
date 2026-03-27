@@ -1,18 +1,23 @@
 package com.bingoextra.commands;
 
+import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static com.bingoextra.BingoExtra.LOGGER;
 
 public class ModCommands {
     public static final String POS = "pos";
@@ -25,6 +30,7 @@ public class ModCommands {
     public static final String BINGO = "bingo";
     public static final String MODE = "mode";
     public static final String EASY = "easy";
+    private static final String NORMAL = "normal";
     public static final String HARD = "hard";
 
 
@@ -59,29 +65,66 @@ public class ModCommands {
                                            ));
     }
 
+    private static String getPosInfo(ServerLevel level, Player player) {
+        BlockPos pos = player.getOnPos();
+        ResourceKey<Level> dimension = level.dimension();
+        return dimension == Level.OVERWORLD ?
+               String.format("§f[§a主世界§f] §b%d %d %d §f-> §f[§c下界§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ(), pos.getX() / 8, pos.getY(), pos.getZ() / 8) :
+               dimension == Level.NETHER ?
+               String.format("§f[§c下界§f] §b%d %d %d §f-> §f[§a主世界§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ(), pos.getX() * 8, pos.getY(), pos.getZ() * 8) :
+               dimension == Level.END ?
+               String.format("§f[§e末地§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ()) :
+               String.format("§f[§d未知维度§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ());
+    }
+
     public static void registerPosShareCommand() {
         CommandRegistrationCallback.EVENT.register(
                 (dispatcher, registryAccess, environment) ->
                         dispatcher.register(Commands.literal(POS)
                                                     .then(Commands.literal(SHARE)
+                                                                  // 无参数：队伍内分享
                                                                   .executes(context -> {
                                                                       Player player = context.getSource().getPlayer();
                                                                       if (player != null) {
-                                                                          BlockPos pos = player.getOnPos();
                                                                           ServerLevel level = context.getSource().getLevel();
-                                                                          ResourceKey<Level> dimension = level.dimension();
-                                                                          String info;
-                                                                          info = dimension == Level.OVERWORLD ?
-                                                                                 String.format("§f[§a主世界§f] §b%d %d %d §f-> §f[§c下界§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ(), pos.getX() / 8, pos.getY(), pos.getZ() / 8) :
-                                                                                 dimension == Level.NETHER ?
-                                                                                 String.format("§f[§c下界§f] §b%d %d %d §f-> §f[§a主世界§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ(), pos.getX() * 8, pos.getY(), pos.getZ() * 8) :
-                                                                                 dimension == Level.END ?
-                                                                                 String.format("§f[§e末地§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ()) :
-                                                                                 String.format("§f[§d未知维度§f] §b%d %d %d ", pos.getX(), pos.getY(), pos.getZ());
+                                                                          player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 600, 0, false, false, false));
+                                                                          String info = getPosInfo(level, player);
                                                                           context.getSource().getServer().getCommands().performPrefixedCommand(player.createCommandSourceStackForNameResolution(level), String.format("/teammsg %s", info));
                                                                       }
                                                                       return 1;
-                                                                  }))
+                                                                  })
+                                                                  // 子命令 all：全体广播
+                                                                  .then(Commands.literal("all")
+                                                                                .executes(context -> {
+                                                                                    Player player = context.getSource().getPlayer();
+                                                                                    if (player != null) {
+                                                                                        ServerLevel level = context.getSource().getLevel();
+                                                                                        player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 600, 0, false, false, false));
+                                                                                        String info = getPosInfo(level, player);
+                                                                                        String message = "§f<" + player.getName().getString() + "> " + info;
+                                                                                        context.getSource().getServer().getPlayerList().broadcastSystemMessage(Component.literal(message), false);
+                                                                                    }
+                                                                                    return 1;
+                                                                                })
+                                                                       )
+                                                                  // 子命令 player <目标玩家>：私发给指定玩家
+                                                                  .then(Commands.literal("player")
+                                                                                .then(Commands.argument("target", EntityArgument.player())
+                                                                                              .executes(context -> {
+                                                                                                  ServerPlayer player = context.getSource().getPlayer();
+                                                                                                  ServerPlayer target = EntityArgument.getPlayer(context, "target");
+                                                                                                  if (player != null) {
+                                                                                                      ServerLevel level = context.getSource().getLevel();
+                                                                                                      player.addEffect(new MobEffectInstance(MobEffects.GLOWING, 600, 0, false, false, false));
+                                                                                                      String info = getPosInfo(level, player);
+                                                                                                      String message = "§7私聊 " + player.getName().getString() + " > " + info;
+                                                                                                      target.sendSystemMessage(Component.literal(message));
+                                                                                                  }
+                                                                                                  return 1;
+                                                                                              })
+                                                                                     )
+                                                                       )
+                                                         )
                                            ));
     }
 
@@ -99,11 +142,6 @@ public class ModCommands {
                                                                                     }
                                                                                     return 1;
                                                                                 }))
-                                                         )));
-        CommandRegistrationCallback.EVENT.register(
-                (dispatcher, registryAccess, environment) ->
-                        dispatcher.register(Commands.literal(POS)
-                                                    .then(Commands.literal(DISPLAY)
                                                                   .then(Commands.literal(OFF)
                                                                                 .executes(context -> {
                                                                                     Player player = context.getSource().getPlayer();
@@ -149,11 +187,17 @@ public class ModCommands {
                                                                                         context.getSource().getServer().getCommands().performPrefixedCommand(player.createCommandSourceStackForNameResolution(level), "/bingo filter +tedious +simplified +advancements +items -unobtainable -uncategorized");
                                                                                     }
                                                                                     return 1;
-                                                                                })))));
-        CommandRegistrationCallback.EVENT.register(
-                (dispatcher, registryAccess, environment) ->
-                        dispatcher.register(Commands.literal(BINGO)
-                                                    .then(Commands.literal(MODE)
+                                                                                }))
+                                                                  .then(Commands.literal(NORMAL)
+                                                                                .executes(context -> {
+                                                                                    Player player = context.getSource().getPlayer();
+                                                                                    if (player != null) {
+                                                                                        context.getSource().sendSystemMessage(Component.literal("§eBingo模式 §f已设置为 §6普通"));
+                                                                                        ServerLevel level = (ServerLevel) player.level();
+                                                                                        context.getSource().getServer().getCommands().performPrefixedCommand(player.createCommandSourceStackForNameResolution(level), "/bingo filter everything");
+                                                                                    }
+                                                                                    return 1;
+                                                                                }))
                                                                   .then(Commands.literal(HARD)
                                                                                 .executes(context -> {
                                                                                     Player player = context.getSource().getPlayer();
@@ -163,7 +207,8 @@ public class ModCommands {
                                                                                         context.getSource().getServer().getCommands().performPrefixedCommand(player.createCommandSourceStackForNameResolution(level), "/bingo filter +tedious -unobtainable -uncategorized");
                                                                                     }
                                                                                     return 1;
-                                                                                })))));
+                                                                                }))
+                                                         )));
     }
 
     public static void init() {

@@ -12,7 +12,7 @@ import net.minecraft.world.item.Items;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
+import static com.bingoextra.BingoExtra.LOGGER;
 
 public class HeadHunterHandler {
 

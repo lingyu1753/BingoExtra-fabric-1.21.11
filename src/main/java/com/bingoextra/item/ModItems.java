@@ -152,6 +152,9 @@ public class ModItems {
     public static final Item SOUL_VAULT = registerItem("soul_vault", SoulVaultItem::new, new Item.Properties()
                                                                   .component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("lore.bingoextra.soul_vault")) ))
                                                          );
+    public static final Item BOUNTY_ORDER = registerItem("bounty_order", BountyOrderItem::new, new Item.Properties()
+                                                                  .component(DataComponents.LORE, new ItemLore(List.of(Component.translatable("lore.bingoextra.bounty_order")) ))
+                                                         );
 
 
 
