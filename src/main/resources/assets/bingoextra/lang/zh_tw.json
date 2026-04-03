@@ -115,6 +115,7 @@
   "item.bingoextra.sun_order": "晴天令",
   "item.bingoextra.oxidant": "氧化剂",
   "item.bingoextra.soul_vault": "捕魂瓶",
+  "item.bingoextra.bounty_order": "讨伐令",
 
   "item.bingoextra.book_of_artemis": "阿尔忒弥斯之书",
   "item.bingoextra.book_of_power": "力量之书",
@@ -146,6 +147,7 @@
   "lore.bingoextra.sun_order": "§7改变天气为晴天",
   "lore.bingoextra.oxidant": "§7用于氧化一些可氧化方块",
   "lore.bingoextra.soul_vault": "§7用于存储怪物的灵魂",
+  "lore.bingoextra.bounty_order": "§7使用以显示附近灾厄生物的位置",
 
   "translate.bingoextra.recipe": "你已制作"
 }

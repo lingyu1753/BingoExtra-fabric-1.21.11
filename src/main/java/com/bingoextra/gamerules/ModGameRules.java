@@ -20,7 +20,8 @@ public class ModGameRules {
     public static final GameRule<Integer> MINING_LEVEL = registerInteger("bingoextra:mining_level", GameRuleCategory.PLAYER, 8, 0, 255);
     public static final GameRule<Integer> HEAD_HUNTER_PROBABILITY = registerInteger("bingoextra:head_hunter_probability", GameRuleCategory.PLAYER, 200, 0, 1000);
     public static final GameRule<Integer> SPAWN_PHANTOM_DELAY = registerInteger("bingoextra:spawn_phantom_delay", GameRuleCategory.PLAYER, 24000, 0, Integer.MAX_VALUE);
-    public static final GameRule<Integer> MAX_BOUNTY_ORDER_RADIUS = registerInteger("bingoextra:max_bounty_order_radius", GameRuleCategory.PLAYER, 100, 0, 1000);
+    public static final GameRule<Integer> MAX_BOUNTY_ORDER_RADIUS = registerInteger("bingoextra:max_bounty_order_radius", GameRuleCategory.PLAYER, 200, 0, 1000);
+    public static final GameRule<Integer> MAX_BOUNTY_ORDER_TIME = registerInteger("bingoextra:max_bounty_order_time", GameRuleCategory.PLAYER, 3600, 1, 72000);
 
     private static GameRule<Boolean> registerBoolean(String string, GameRuleCategory gameRuleCategory, boolean bl) {
         return register(

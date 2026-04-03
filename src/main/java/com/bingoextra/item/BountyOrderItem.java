@@ -30,18 +30,18 @@ public class BountyOrderItem extends Item {
     public BountyOrderItem(Properties properties) {
         super(properties.stacksTo(1)
                         .rarity(Rarity.UNCOMMON)
-                        .useCooldown(60.0F)
+                        .useCooldown(20.0F)
              );
     }
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if (level.isClientSide()) {
-            // 客户端播放音效（仅对使用物品的玩家）
             player.playSound(SoundEvents.RESPAWN_ANCHOR_CHARGE, 1.0F, 1.0F);
         } else {
             ServerLevel serverLevel = (ServerLevel) level;
             int radius = serverLevel.getGameRules().get(ModGameRules.MAX_BOUNTY_ORDER_RADIUS);
+            int time = serverLevel.getGameRules().get(ModGameRules.MAX_BOUNTY_ORDER_TIME);
 
             List<Entity> entities = serverLevel.getEntitiesOfClass(
                     Entity.class,
@@ -51,7 +51,7 @@ public class BountyOrderItem extends Item {
 
             for (Entity entity : entities) {
                 if (entity instanceof Monster mob) {
-                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, 1200, 0, false, false, false));
+                    mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, time, 0, false, false, false));
                 }
             }
         }
