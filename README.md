@@ -2,7 +2,6 @@
 作者: 予梦_玲羽
 平台: Bilibili
 QQ: 2975194966
-推送命令: git push origin refs/heads/fabric-1.21.11:refs/heads/fabric-1.21.11 --force-with-lease
 
 
 # 更细日志
