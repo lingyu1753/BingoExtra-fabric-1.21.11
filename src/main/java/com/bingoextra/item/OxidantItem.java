@@ -40,7 +40,7 @@ public class OxidantItem extends Item {
         Optional<Block> nextBlockOpt = WeatheringCopper.getNext(block);
         if (nextBlockOpt.isEmpty()) return InteractionResult.FAIL;
 
-        if (block.getDescriptionId().contains("door") && state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) return InteractionResult.FAIL;
+        if (!block.getDescriptionId().contains("trapdoor") && block.getDescriptionId().contains("door") && state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) return InteractionResult.FAIL;
 
         Block nextBlock = nextBlockOpt.get();
         BlockState newState = nextBlock.defaultBlockState();

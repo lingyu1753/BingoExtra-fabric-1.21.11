@@ -1,7 +1,9 @@
 package com.bingoextra.item;
 
 import com.bingoextra.gamerules.ModGameRules;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -51,6 +53,7 @@ public class BountyOrderItem extends Item {
 
             for (Entity entity : entities) {
                 if (entity instanceof Monster mob) {
+                    if (mob.hasEffect(MobEffects.GLOWING)) mob.removeEffect(MobEffects.GLOWING);
                     mob.addEffect(new MobEffectInstance(MobEffects.GLOWING, time, 0, false, false, false));
                 }
             }

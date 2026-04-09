@@ -61,7 +61,8 @@ public class AutoSmeltingHandler {
             Map.entry(Items.RAW_COPPER, Items.COPPER_INGOT),
             Map.entry(Items.RAW_IRON, Items.IRON_INGOT),
             Map.entry(Items.RAW_GOLD, Items.GOLD_INGOT),
-            Map.entry(Items.ANCIENT_DEBRIS, Items.NETHERITE_SCRAP)
+            Map.entry(Items.ANCIENT_DEBRIS, Items.NETHERITE_SCRAP),
+            Map.entry(Items.GILDED_BLACKSTONE, Items.GOLD_INGOT)
                                                                      );
     private static final Map<Block, Integer> EXP_MAP = Map.ofEntries(
             Map.entry(Blocks.COPPER_ORE, 1),
@@ -83,7 +84,8 @@ public class AutoSmeltingHandler {
             Map.entry(Blocks.DEEPSLATE_LAPIS_ORE, 1),
             Map.entry(Blocks.NETHER_GOLD_ORE, 1),
             Map.entry(Blocks.NETHER_QUARTZ_ORE, 1),
-            Map.entry(Blocks.ANCIENT_DEBRIS, 2)
+            Map.entry(Blocks.ANCIENT_DEBRIS, 2),
+            Map.entry(Blocks.GILDED_BLACKSTONE, 1)
                                                                     );
 
     private static boolean handleSmeltingPickaxeMining(Level world, Player player, BlockPos pos, BlockState state, BlockEntity blockEntity) {
